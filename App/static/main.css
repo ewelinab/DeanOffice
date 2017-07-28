@@ -1,0 +1,111 @@
+header {
+	text-align: center;
+	font-family: 'Quicksand', sans-serif;
+	color: black;
+	margin-bottom: 50px;
+}
+
+h1 {
+	font-weight: 300;
+}
+
+h2 { 
+	font-weight: 300;
+}
+
+.logo_img img {
+	margin-left: 1%;
+}
+
+body{
+    padding-top: 10px;
+	margin: 1%;
+/*    background-image: url("background31.jpg");*/
+	
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: dimgrey;
+	font-family: 'Quicksand', sans-serif;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #76ACD1;
+}
+
+.active {
+    background-color: #76ACD1;
+}
+
+.number {
+	text-align: center;
+	border-style: dotted;
+	border-color: gray;
+	margin: 2%;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 60px;
+}
+
+.table table {
+	border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    text-align: left;
+    padding: 14px 16px;
+	font-family: 'Quicksand', sans-serif;
+	text-align: center;
+}
+
+tr:nth-child(even){
+	background-color: #f2f2f2;
+	font-family: 'Quicksand', sans-serif;
+}
+
+th {
+    background-color: dimgrey;
+    color: white;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 300;
+}
+
+.next_button_container {
+	text-align: center;
+	margin: 5%;
+}
+
+.next_button_container button {
+	font-family: 'Quicksand', sans-serif;
+	background-color: #76ACD1 ;
+	border: none;
+	width: 250px;
+	height: 75px;
+	font-size: 35px;
+	color: white;
+}
+
+.next_button_container button:hover {
+	background-color: dimgray;
+}
+
+.next_button_container button:active {
+	background-color: dimgray;
+}
+
+

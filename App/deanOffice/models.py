@@ -25,4 +25,4 @@ class NumbersQueue(models.Model):
     studentId = models.ForeignKey('Student')
 
     def __str__(self):
-        return self.numberId
+        return str(self.numberId)
