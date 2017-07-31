@@ -9,7 +9,7 @@ h1 {
 	font-weight: 300;
 }
 
-h2 { 
+h2 {
 	font-weight: 300;
 }
 
@@ -21,7 +21,7 @@ body{
     padding-top: 10px;
 	margin: 1%;
 /*    background-image: url("background31.jpg");*/
-	
+
 }
 
 ul {
@@ -107,5 +107,3 @@ th {
 .next_button_container button:active {
 	background-color: dimgray;
 }
-
-
