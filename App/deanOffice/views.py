@@ -4,6 +4,7 @@ from .models import Employee
 from .models import NumbersQueue
 # Create your views here.
 def dean_office(request):
+# nie dziala dla koncowki ze sleszem
     current_user = Employee.objects.first()
 
     num = NumbersQueue.objects.first()
@@ -21,11 +22,16 @@ def dean_office(request):
         student = num.studentId
 
 
-    return render(request, 'dean_office/main.html', {'num': num, 'student': student, 'current_user': current_user, 'nextNumberLink': 'deanOffice/nextNumber'})
+    return render(request, 'dean_office/main.html', {'num': num, 'student': student, 'current_user': current_user})
 
 
 def dean_next_number(request):
-    NumbersQueue.objects.first().delete()
+
+    num = NumbersQueue.objects.first()
+
+    if num is not None:
+        num.delete()
+
     return dean_office(request)
 
 def welfare_office(request):
