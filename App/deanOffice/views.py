@@ -1,7 +1,7 @@
 # TO DO
-# 1 stworzenie 2 serwisów, ktore pozwala odczytac:
-# a. aktualnie obsługiwany i (nazwa: getActualNumber)
-# b. pierwszy dostępny numerek z bazy (nazwa: getAvailableNumber)
+# 1 stworzenie 2 serwisów, ktore pozwala odczytac:-----------------DONE
+# a. aktualnie obsługiwany i (nazwa: getActualNumber)-----------------DONE
+# b. pierwszy dostępny numerek z bazy (nazwa: getAvailableNumber)-----------------DONE
 # 2 implementacjia serwisów w aplikacji mobilnej: getActualNumber; getAvailableNumber
 # 3 Logowanie studenta do ap mobilnej
 # 4 Logowanie employee do serwisu deanOffice
@@ -57,7 +57,7 @@ def dean_get_actual_number(request):
 
     return render(request, 'dean_office/1.html', {'num': num})
 
-def dean_get_available_number(request):
+def dean_calculate_available_number():
 
     available_number = NumbersQueue.objects.last()
 
@@ -66,8 +66,22 @@ def dean_get_available_number(request):
     else:
         num = 1
 
+    return num
+
+def dean_get_available_number(request):
+
+    num = dean_calculate_available_number()
+
     return render(request, 'dean_office/1.html', {'num': num})
 
+def dean_reserve_number(request, login):
+
+    num = dean_calculate_available_number()
+    #TODO: syie sie jak student poda login, ktorego nie ma w bazie studentow
+    student = Student.objects.get(studentId = login)
+    NumbersQueue.objects.create(numberId = num, studentId = student)
+
+    return render(request, 'dean_office/1.html', {'num': num})
 
 def welfare_office(request):
     current_user = Employee.objects.first()
