@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^deanOffice/reserveNumber/(?P<login>[0-9]+)/$', views.dean_reserve_number, name='dean_reserve_number'),
     url(r'^welfareOffice$', views.welfare_office, name='welfare_office'),
     url(r'^welfareOffice/nextNumber$', views.welfare_next_number, name='welfare_next_number'),
+    url(r'^fillDatabase$', tests_views.fill_database, name='fill_database'),
 ]
