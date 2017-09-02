@@ -1,8 +1,6 @@
 from django.contrib import admin
-from .models import Employee
-from .models import Student
-from .models import NumbersQueue
+from .models import Student, DeanOfficeNumbersQueue, WelfareOfficeNumbersQueue
 
-admin.site.register(Employee)
 admin.site.register(Student)
-admin.site.register(NumbersQueue)
+admin.site.register(DeanOfficeNumbersQueue)
+admin.site.register(WelfareOfficeNumbersQueue)
