@@ -18,6 +18,15 @@ from django.contrib.auth.decorators import login_required
 import hashlib
 # Create your views here.
 
+def check_login_password(login, password):
+    student = Student.objects.get(studentId = login)
+    if student != None and student.password == password:
+        return True
+    else:
+        return False
+
+def check_login(request, login, password):
+    return HttpResponse("{}".format(check_login_password(login, password)))
 
 def create_empty_student():
     student = Student()
@@ -78,8 +87,11 @@ def reserve_number(request, login, NumbersQueueModel):
     NumbersQueueModel.objects.create(numberId = num, studentId = student)
     return HttpResponse("{}".format(num))
 
-def dean_reserve_number(request, login):
-    return reserve_number(request, login, DeanOfficeNumbersQueue)
+def dean_reserve_number(request, login, password):
+    if check_login_password(login, password):
+        return reserve_number(request, login, DeanOfficeNumbersQueue)
+    else:
+        return HttpResponse("Access Denied")
 
 #welfare
 
@@ -100,5 +112,9 @@ def welfare_get_actual_number(request):
 def welfare_get_available_number(request):
     return HttpResponse("{}".format(calculate_available_number(WelfareOfficeNumbersQueue)))
 
-def welfare_reserve_number(request, login):
-    return reserve_number(request, login, WelfareOfficeNumbersQueue)
+def welfare_reserve_number(request, login, password):
+    if check_login_password(login, password):
+        return reserve_number(request, login, WelfareOfficeNumbersQueue)
+    else:
+        return HttpResponse("Access Denied")
+

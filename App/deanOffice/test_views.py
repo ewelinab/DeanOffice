@@ -2,6 +2,7 @@ import names
 from django.http import HttpResponse
 
 from .models import Student
+from .views import *
 import hashlib
 
 def fill_database(request):
@@ -22,3 +23,12 @@ def generateStudents(nr_of_students):
                                lastName=names.get_last_name(),
                                faculty=faculty_group[i%3],
                                groupId=i%10)
+
+
+
+#test
+def dean_reserve_number(request, login):
+    return reserve_number(request, login, DeanOfficeNumbersQueue)
+
+def welfare_reserve_number(request, login):
+    return reserve_number(request, login, WelfareOfficeNumbersQueue)
