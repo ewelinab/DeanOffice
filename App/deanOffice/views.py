@@ -71,7 +71,6 @@ def dean_get_available_number(request):
 
 @transaction.atomic
 def reserve_number(request, login, NumbersQueueModel):
-    #TODO: syie sie jak student poda login, ktorego nie ma w bazie studentow
     student = Student.objects.get(studentId = login)
     if student is None:
         return HttpResponse("Student not exist")
