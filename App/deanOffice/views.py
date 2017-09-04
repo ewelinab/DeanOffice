@@ -1,14 +1,3 @@
-# TO DO
-# 1 stworzenie 2 serwisów, ktore pozwala odczytac:-----------------DONE
-# a. aktualnie obsługiwany i (nazwa: getActualNumber)-----------------DONE
-# b. pierwszy dostępny numerek z bazy (nazwa: getAvailableNumber)-----------------DONE
-# 2 implementacjia serwisów w aplikacji mobilnej: getActualNumber; getAvailableNumber
-# 3 Logowanie studenta do ap mobilnej
-# 4 Logowanie employee do serwisu deanOffice
-# 5 REzerwacja numerka
-# a. mobilna
-# b. serwis rezerwujący (trivial - )
-
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import logout
 from django.shortcuts import render
@@ -17,7 +6,6 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError, transaction
 import hashlib
-# Create your views here.
 
 def check_login_password(login, password):
     student = Student.objects.get(studentId = login)
@@ -38,10 +26,10 @@ def create_empty_student():
     student.groupId = "---"
     return student
 
-def render_main_site(request, NumerQueueModel, next_number_view):
-    num = NumerQueueModel.objects.first()
+def render_main_site(request, NumberQueueModel, next_number_view):
+    num = NumberQueueModel.objects.first()
     if num is None:
-        num = NumerQueueModel()
+        num = NumberQueueModel()
         num.numberId = 0
         student = create_empty_student()
     else:
