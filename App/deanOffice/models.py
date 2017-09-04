@@ -13,14 +13,14 @@ class Student(models.Model):
         return self.studentId
 
 class DeanOfficeNumbersQueue(models.Model):
-    numberId = models.IntegerField(primary_key=True)
+    numberId = models.AutoField(primary_key=True)
     studentId = models.ForeignKey('Student')
 
     def __str__(self):
         return str(self.numberId)
 
 class WelfareOfficeNumbersQueue(models.Model):
-    numberId = models.IntegerField(primary_key=True)
+    numberId = models.AutoField(primary_key=True)
     studentId = models.ForeignKey('Student')
 
     def __str__(self):

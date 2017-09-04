@@ -15,6 +15,7 @@ from django.shortcuts import render
 from .models import Student, DeanOfficeNumbersQueue, WelfareOfficeNumbersQueue
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError, transaction
 import hashlib
 # Create your views here.
 
@@ -80,12 +81,15 @@ def calculate_available_number(NumbersQueueModel):
 def dean_get_available_number(request):
     return HttpResponse("{}".format(calculate_available_number(DeanOfficeNumbersQueue)))
 
+@transaction.atomic
 def reserve_number(request, login, NumbersQueueModel):
-    num = calculate_available_number(NumbersQueueModel)
     #TODO: syie sie jak student poda login, ktorego nie ma w bazie studentow
     student = Student.objects.get(studentId = login)
-    NumbersQueueModel.objects.create(numberId = num, studentId = student)
-    return HttpResponse("{}".format(num))
+    if student is None:
+        return HttpResponse("Student not exist")
+
+    num = NumbersQueueModel.objects.create(studentId = student)
+    return HttpResponse("{}".format(num.numberId))
 
 def dean_reserve_number(request, login, password):
     if check_login_password(login, password):
@@ -117,4 +121,3 @@ def welfare_reserve_number(request, login, password):
         return reserve_number(request, login, WelfareOfficeNumbersQueue)
     else:
         return HttpResponse("Access Denied")
-

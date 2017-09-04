@@ -14,13 +14,16 @@ urlpatterns = [
     url(r'^welfareOffice/getActualNumber/$', views.welfare_get_actual_number, name='welfare_get_actual_number'),
     url(r'^welfareOffice/getAvailableNumber/$', views.welfare_get_available_number, name='welfare_get_available_number'),
     url(r'^welfareOffice/reserveNumber/(?P<login>[0-9]+)/(?P<password>\w+)/$', views.welfare_reserve_number, name='welfare_reserve_number'),
-    # employee authorization urls
+    # student authorization urls
     url(r'^checkLogin/(?P<login>[0-9]+)/(?P<password>\w+)/$', views.check_login, name='check_login'),
+    # employee authorization urls
     url(r'^login/$', auth_views.login),
     url(r'^logout/$', auth_views.logout),
+
     # for test, will be removed in future
     # fill database with random data
     url(r'^fillDatabase/$', test_views.fill_database, name='fill_database'),
+    url(r'^clearDatabase/$', test_views.clear_database, name='clear_database'),
     # reserveNumber that do not need password
     url(r'^deanOffice/reserveNumber/(?P<login>[0-9]+)/$', test_views.dean_reserve_number, name='dean_reserve_number'),
     url(r'^welfareOffice/reserveNumber/(?P<login>[0-9]+)/$', test_views.welfare_reserve_number, name='welfare_reserve_number'),

@@ -1,18 +1,25 @@
 import names
 from django.http import HttpResponse
 
-from .models import Student
+from .models import Student, DeanOfficeNumbersQueue, WelfareOfficeNumbersQueue
 from .views import *
 import hashlib
 
 def fill_database(request):
-    # generate1Employee()
     generateStudents(50)
+    # clearTable(DeanOfficeNumbersQueue)
+    # clearTable(DeanOfficStudenteNumbersQueue)
     return HttpResponse("Done.")
 
+def clear_database(request):
+    clearTable(DeanOfficeNumbersQueue)
+    clearTable(WelfareOfficeNumbersQueue)
+    clearTable(Student)
+    return HttpResponse("Done.")
 
-# def generate1Employee():
-#     Employee.objects.create(employeeId=1, firstName='Elwirka', lastName='Kotowska')
+def clearTable(ModelName):
+    for num in ModelName.objects.all():
+        num.delete()
 
 def generateStudents(nr_of_students):
     faculty_group = ['Informatyka', 'Fizyka', 'Matematyka']
